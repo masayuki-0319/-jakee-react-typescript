@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { Login } from "../components/Login";
+import { Login } from "../components/pages/Login";
 import { homeRoutes } from "./HomeRoutes";
-import { Page404 } from "../components/Page404";
+import { Page404 } from "../components/pages/Page404";
 import HeaderLayout from "../components/templates/HeaderLayout";
 
 export const Router = () => {
