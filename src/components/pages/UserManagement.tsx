@@ -1,17 +1,36 @@
-import React, { VFC, memo } from "react";
-import { Wrap, WrapItem } from "@chakra-ui/react";
+import React, { VFC, memo, useEffect } from "react";
+import { Center, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
 import UserCard from "../organisms/user/UserCard";
+import { useAllUsers } from "../../hooks/useAllUsers";
+import { User } from "../../types/api/user";
 
 export const UserManagement: VFC = memo(() => {
+  const { getUsers, users, loading } = useAllUsers();
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
-    <Wrap p={{ base: 4, md: 10 }}>
-      <WrapItem>
-        <UserCard
-          imageUrl="https://source.unsplash.com/random"
-          userName="表示名　"
-          fullName="登録名"
-        />
-      </WrapItem>
-    </Wrap>
+    <>
+      {loading ? (
+        <Center h="100vh">
+          <Spinner />
+        </Center>
+      ) : (
+        <Wrap p={{ base: 4, md: 10 }}>
+          {users.map((user) => (
+            <WrapItem key={user.id} mx="auto">
+              <UserCard
+                imageUrl="https://source.unsplash.com/random"
+                userName={user.username}
+                fullName={user.name}
+              />
+            </WrapItem>
+          ))}
+          )
+        </Wrap>
+      )}
+    </>
   );
 });
