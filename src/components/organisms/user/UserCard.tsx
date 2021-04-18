@@ -1,15 +1,18 @@
 import { Box, Stack, Image, Text } from "@chakra-ui/react";
 import React, { memo, VFC } from "react";
+import { useSelectUsers } from "../../../hooks/useSelectUsers";
 
 type Props = {
+  id: number;
   imageUrl: string;
   userName: string;
   fullName: string;
-  onClick: () => void;
+  onClick: (id: number) => void;
 };
 
 const UserCard: VFC<Props> = memo((props) => {
-  const { imageUrl, userName, fullName, onClick } = props;
+  const { id, imageUrl, userName, fullName, onClick } = props;
+
   return (
     <Box
       w="260px"
@@ -27,7 +30,7 @@ const UserCard: VFC<Props> = memo((props) => {
           src={imageUrl}
           alt="プロフィール画像"
           m="auto"
-          onClick={onClick}
+          onClick={() => onClick(id)}
         />
         <Text fontSize="lg" fontWeight="bold">
           {userName}
