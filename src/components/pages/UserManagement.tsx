@@ -1,5 +1,17 @@
-import React, { memo } from "react";
+import React, { VFC, memo } from "react";
+import { Wrap, WrapItem } from "@chakra-ui/react";
+import UserCard from "../organisms/user/UserCard";
 
-export const UserManagement: React.FC = memo(() => {
-  return <p>ユーザー管理ページです</p>;
+export const UserManagement: VFC = memo(() => {
+  return (
+    <Wrap p={{ base: 4, md: 10 }}>
+      <WrapItem>
+        <UserCard
+          imageUrl="https://source.unsplash.com/random"
+          userName="表示名　"
+          fullName="登録名"
+        />
+      </WrapItem>
+    </Wrap>
+  );
 });
